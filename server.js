@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -8,6 +9,17 @@ const corsOptions = require('./config/corsOptions')
 const cookieParser = require('cookie-parser');
 const {logger} = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
+const {createUser} = require('./models/User');
+const pool = require('./db/db');
+
+console.log(process.env.NODE_ENV);
+
+(async () => {
+    const usercreation = await createUser('reedrichards', 'reedrichards@gmail.com', 'something');
+    console.log(usercreation);
+    const result = await pool.query('SELECT * FROM users');
+    console.log(result.rows);
+})();
 
 app.use(logger);
 
