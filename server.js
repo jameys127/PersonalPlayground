@@ -9,8 +9,6 @@ const corsOptions = require('./config/corsOptions')
 const cookieParser = require('cookie-parser');
 const {logger} = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
-const {createUser} = require('./models/User');
-const pool = require('./db/db');
 
 console.log(process.env.NODE_ENV);
 
@@ -29,6 +27,7 @@ app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'));
 app.use('/users', require('./routes/userRoutes'));
+app.use('/projects', require('./routes/projectRoutes'));
 
 
 
