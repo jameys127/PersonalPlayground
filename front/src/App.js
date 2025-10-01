@@ -1,8 +1,8 @@
 import {Routes, Route} from 'react-router-dom';
 import Layout from './components/Layout';
-import Public from './components/Public'
+import Public from './components/Public/Public'
 import Login from './features/auth/Login';
-import DashLayout from './components/DashLayout';
+import DashLayout from './components/Private/DashLayout';
 import Welcome from './features/auth/Welcome';
 
 function App() {

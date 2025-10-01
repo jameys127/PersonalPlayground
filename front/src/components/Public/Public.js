@@ -4,57 +4,48 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import PublicFooter from './PublicFooter';
+import PublicHeader from './PublicHeader';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 const Public = () => {
   return (
     <section className='public'>
-      <header className='publicHeader'>
-        <h1>Welcome to my <span className='nowrap'>PersonalPlayground</span></h1>
-      </header>
+      <PublicHeader />
       <main className='public_main'>
         <p>This will be my personal portfolio of different projects that I decide to show off. The website itself is an example of such a project as I built this with a tech stack I've never used before. Node.js and Express.js for the backend, PostgreSQL for the database, and React for the frontend.</p>
 
-        <Card sx={{maxWidth: 325}} className='muiCard'>
+        <Card sx={{
+          maxWidth: 400,
+          backgroundColor: 'transparent',
+          borderRadius: 3,
+          boxShadow: 5,
+          '&:hover': {
+            transform: 'scale(1.04)'
+          },
+          transition: 'all 0.1s ease'
+        }}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="170"
+              height="200"
               image="/image.png"
               alt="Asteroids in Unity"
             />
             <CardContent sx={{color: 'white', background: '#23282b'}}>
-              <Typography gutterBottom textAlign="left" variant="h5" component="div">
+              <Typography gutterBottom variant="h5" component="div" sx={{fontWeight: 700}}>
                 Asteroids
               </Typography>
-              <Typography variant='body2' textAlign="left" sx={{color: 'white'}}>
+              <Typography textAlign="left" sx={{color: 'white'}}>
                 Retro game Asteroids created in Unity
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
 
-
-        {/* <div className='cards'>
-          <article className='card'>
-            <header>
-              <h2>Short Heading</h2>
-              <img src='/image.png' alt='Something IDK'/>
-              <p>This was a project making the game 'Asteroids'</p>
-            </header>
-          </article>
-
-          <article className='card'>
-            <header>
-              <h2>Short Heading 2</h2>
-              <img src='/image.png' alt='Something IDK'/>
-              <p>This was a project making the game 'Asteroids'</p>
-            </header>
-          </article>
-        </div> */}
       </main>
-      <footer className='publicFooter'>
-        © Sheehy development. All rights resereved
-      </footer>
+      <PublicFooter />
     </section>
   )
 }
