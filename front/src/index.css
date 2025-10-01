@@ -1,3 +1,8 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +10,87 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-color: #2a2f33;
+}
+
+img{
+  max-width: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.nowrap {
+  text-decoration: underline 2px;
+  margin-top: -8px;
+  font-size: 3rem;
+  font-weight: 800;
+  display: block;
+}
+
+.publicHeader{
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  text-align: center;
+  background-color: #23282b;
+}
+
+.publicFooter{
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  padding: 5px;
+  background-color: #23282b;
+}
+
+.public_main{
+  text-align: center;
+  margin: 0 auto;
+  letter-spacing: 0.3px;
+  max-width: 75ch;
+  line-height: 1.2;
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+.cards{
+  max-width: 300px;
+  margin: 1em auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-gap: 20px;
+}
+
+.card{
+  border: 1px solid #999999;
+  border-radius: 3px;
+  display: grid;
+  grid-template-rows: max-content 200px 1fr;
+}
+
+.card img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.card h2{
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.card .content{
+  padding: 0.5rem;
+}
+
+.muiCard{
+  font-size: large;
 }
