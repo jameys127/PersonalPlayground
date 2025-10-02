@@ -23,17 +23,17 @@ const PublicHeader = () => {
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
-            <Link to='/about' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='https://github.com/jameys127' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/about' className='nav-links' onClick={closeMobileMenu}>
               About
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/projects' className='nav-links' onClick={closeMobileMenu}>
               Projects
             </Link>
           </li>

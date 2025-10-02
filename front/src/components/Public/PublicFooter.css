@@ -1,0 +1,13 @@
+.publicFooter{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4vh;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  color: #fff;
+  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
+  background: linear-gradient(to right, #232526, #414345);
+}

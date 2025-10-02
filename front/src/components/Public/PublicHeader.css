@@ -102,8 +102,10 @@
 
   .nav-menu.active li {
     height: 60px;
-    padding: 1rem;
+    padding: 0.5rem;
     opacity: 1;
+    /* border-bottom: 1px solid #444; */
+    border-top: 1px solid #444;
   }
 
   .nav-links {
