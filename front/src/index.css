@@ -1,9 +1,12 @@
 *{
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+  
 }
 
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -21,7 +24,8 @@ img{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
+
 
 .nowrap {
   text-decoration: underline 2px;
@@ -51,7 +55,25 @@ code {
 }
 
 .gridCards{
-  padding: 20px
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+@media (max-width: 900px) {
+  .gridCards{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .gridCards{
+    grid-template-columns: 1fr;
+  }
 }
 
 .public_main > p{
