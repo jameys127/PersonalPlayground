@@ -1,0 +1,26 @@
+.intro-container{
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: linear-gradient(to right, #232526, #414345);
+    text-align: center;
+}
+
+.intro-container > img {
+    width: 150px;
+    border-radius: 40%;
+    object-fit: cover;
+    box-shadow: #232526;
+}
+
+.intro-container > h1 {
+    font-size: 60px;
+}
+
+.intro-container > p {
+    font-size: 24px;
+}

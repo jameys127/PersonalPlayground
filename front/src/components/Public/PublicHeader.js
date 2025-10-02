@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './PublicHeader.css';
 
@@ -7,6 +7,10 @@ const PublicHeader = () => {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  useEffect(() => {
+    
+  })
 
   return (
     <nav className='navbar'>
@@ -20,17 +24,17 @@ const PublicHeader = () => {
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
             <Link to='/about' className='nav-links' onClick={closeMobileMenu}>
-              About Me
+              Home
             </Link>
           </li>
           <li className='nav-item'>
             <Link to='https://github.com/jameys127' className='nav-links' onClick={closeMobileMenu}>
-              Github
+              About
             </Link>
           </li>
           <li className='nav-item'>
             <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-              Linkedin
+              Projects
             </Link>
           </li>
         </ul>
