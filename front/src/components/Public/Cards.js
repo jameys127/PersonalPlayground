@@ -1,14 +1,25 @@
 import React from 'react'
 import CardItem from './CardItem'
 import './Cards.css'
+import { useLocation } from 'react-router-dom'
 
 const Cards = () => {
-  return (
-    <div className='cards'>
+
+  const cardContent = {
+    img: '/image.png',
+    title: 'Asteroids',
+    descriptions: 'The retro game Asteriods made in Unity'
+  }
+
+  const {pathname} = useLocation();
+
+  if(pathname === '/projects'){
+    return(
+      <div className='cards'>
         <CardItem
-            img='/image.png'
-            title='Asteroids'
-            description='The retro game Asteroids built in Unity'
+            img={cardContent.img}
+            title={cardContent.title}
+            description={cardContent.descriptions}
         />
         <CardItem
             img='/image.png'
@@ -21,6 +32,11 @@ const Cards = () => {
             description='The retro game Asteroids built in Unity'
         />
         <CardItem
+            img={cardContent.img}
+            title={cardContent.title}
+            description={cardContent.descriptions}
+        />
+        <CardItem
             img='/image.png'
             title='Asteroids'
             description='The retro game Asteroids built in Unity'
@@ -30,8 +46,30 @@ const Cards = () => {
             title='Asteroids'
             description='The retro game Asteroids built in Unity'
         />
-    </div>
-  )
+      </div>
+    )
+  }else{
+    return (
+      <div className='cards'>
+          <CardItem
+              img={cardContent.img}
+              title={cardContent.title}
+              description={cardContent.descriptions}
+          />
+          <CardItem
+              img='/image.png'
+              title='Asteroids'
+              description='The retro game Asteroids built in Unity'
+          />
+          <CardItem
+              img='/image.png'
+              title='Asteroids'
+              description='The retro game Asteroids built in Unity'
+          />
+      </div>
+    )
+  }
+
 }
 
 export default Cards

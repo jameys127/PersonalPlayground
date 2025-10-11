@@ -4,6 +4,7 @@ import Public from './components/Public/Public'
 import Login from './features/auth/Login';
 import DashLayout from './components/Private/DashLayout';
 import Welcome from './features/auth/Welcome';
+import Project from './components/Project/Project';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       {/* this is the root route that has an 'index.' The index is the route it goes to first */}
       <Route path='/' element={<Layout />}>
         <Route index element={<Public />} />
+
+        <Route path='projects' element={<Project />} />
 
         {/* after that we have the login which would be /login  */}
         <Route path='login' element={<Login />}/>

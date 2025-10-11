@@ -12,13 +12,6 @@ const errorHandler = require('./middleware/errorHandler');
 
 console.log(process.env.NODE_ENV);
 
-// (async () => {
-//     const usercreation = await createUser('reedrichards', 'reedrichards@gmail.com', 'something');
-//     console.log(usercreation);
-//     const result = await pool.query('SELECT * FROM users');
-//     console.log(result.rows);
-// })();
-
 app.use(logger);
 
 app.use(cors(corsOptions));
@@ -26,6 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'));
+app.use('/auth', require('./routes/authRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 app.use('/projects', require('./routes/projectRoutes'));
 

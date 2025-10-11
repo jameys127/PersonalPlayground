@@ -2,3 +2,8 @@
     background: linear-gradient(to right, #232526, #414345);
     /* padding: 1rem; */
 }
+
+.button-container{
+    justify-self: center;
+    padding-bottom: 50px;
+}

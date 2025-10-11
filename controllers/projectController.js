@@ -1,9 +1,9 @@
 const project = require('../models/Project');
 const asyncHandler = require('express-async-handler');
 
-//@desc get all users
-//@route GET /users
-//@access Private
+//@desc get all projects
+//@route GET /projects
+//@access Public
 const getAllProjects = asyncHandler(async (req, res) => {
     const allProjects = await project.getAllProjects();
     if(allProjects.length === 0){
@@ -12,8 +12,8 @@ const getAllProjects = asyncHandler(async (req, res) => {
     return res.status(200).json(allProjects);
 });
 
-//@desc create new user
-//@route POST /users
+//@desc create new project
+//@route POST /projects
 //@access Private
 const createNewProject = asyncHandler(async (req, res) => {
     const {title, img, description} = req.body;

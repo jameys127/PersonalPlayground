@@ -61,7 +61,7 @@ const getAllUsers = async () => {
 }
 
 const getUserWithUsername = async (username) => {
-    const query = `SELECT id, username, email FROM users WHERE username = $1;`;
+    const query = `SELECT id, username, email, password FROM users WHERE username = $1;`;
     const value = [username];
     try{
         const result = await pool.query(query, value);
