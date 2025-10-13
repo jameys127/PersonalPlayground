@@ -5,6 +5,7 @@ import Login from './features/auth/Login';
 import DashLayout from './components/Private/DashLayout';
 import Welcome from './features/auth/Welcome';
 import Project from './components/Project/Project';
+import About from './components/Public/About/About';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<Public />} />
 
         <Route path='projects' element={<Project />} />
+        <Route path='about' element={<About />} />
 
         {/* after that we have the login which would be /login  */}
         <Route path='login' element={<Login />}/>
