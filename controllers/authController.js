@@ -16,6 +16,7 @@ const login = asyncHandler(async (req, res) => {
     if(!match){
         return res.status(401).json({message: 'Unauthorized'})
     }
+
     const accessToken = jwt.sign(
         {
             "UserInfo": {
@@ -25,11 +26,13 @@ const login = asyncHandler(async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn: '1m'}
     )
+
     const refreshToken = jwt.sign(
         {"username": foundUser[0].username},
         process.env.REFRESH_TOKEN_SECRET,
         {expiresIn: '1d'}
     )
+
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
         secure: true,
@@ -37,6 +40,7 @@ const login = asyncHandler(async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
     res.json({accessToken});
+    
 })
 
 const refresh = (req, res) => {

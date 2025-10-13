@@ -10,6 +10,7 @@ const CardItem = (prop) => {
   return (
     <Card sx={{
         width: 400,
+        height: 'auto',
         backgroundColor: 'transparent',
         borderRadius: 3,
         boxShadow: 5,
@@ -27,7 +28,13 @@ const CardItem = (prop) => {
             />
             <CardContent sx={{color: 'white', background: '#23282b'}}>
                 <Typography gutterBottom variant="h5" component="div" sx={{fontWeight: 700}}>{prop.title}</Typography>
-                <Typography textAlign="left" sx={{color: 'white'}}>{prop.description}</Typography>
+                <Typography textAlign="left" sx={{
+                    color: 'white',
+                    overflow: 'hidden',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical'
+                }}>{prop.description}</Typography>
             </CardContent>
         </CardActionArea>
     </Card>

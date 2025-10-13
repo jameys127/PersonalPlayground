@@ -24,7 +24,7 @@ const PublicFooter = () => {
           </a>
         </li>
         <li>
-          <a href="/" target="_blank" rel="noopener noreferrer">
+          <a href="/JeremiahSheehyResumeEdit.pdf" target="_blank" rel="noopener noreferrer">
             Resume <i class="fa-solid fa-file"></i>
           </a>
         </li>

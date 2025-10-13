@@ -4,6 +4,7 @@ import axios from 'axios';
 import PublicHeader from '../Public/PublicHeader';
 import PublicFooter from '../Public/PublicFooter';
 import Cards from '../Public/Cards';
+import './Project.css';
 
 const Projects = () => {
 
