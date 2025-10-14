@@ -6,6 +6,8 @@ import DashLayout from './components/Private/DashLayout';
 import Welcome from './features/auth/Welcome';
 import Project from './components/Project/Project';
 import About from './components/Public/About/About';
+import ProjectPage from './components/Project/ProjectPage';
+import ProjectLayout from './components/Project/ProjectLayout';
 
 function App() {
   return (
@@ -15,7 +17,10 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<Public />} />
 
-        <Route path='projects' element={<Project />} />
+        <Route path='projects' element={<ProjectLayout />}>
+          <Route index element={<Project />} /> 
+          <Route path='test' element={<ProjectPage />} />
+        </Route>
         <Route path='about' element={<About />} />
 
         {/* after that we have the login which would be /login  */}

@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import './CardItem.css'
+import { Link } from 'react-router-dom';
 
 const CardItem = (prop) => {
   return (
@@ -17,9 +18,9 @@ const CardItem = (prop) => {
         '&:hover': {
             transform: 'scale(1.04)'
         },
-        transition: 'all 0.1s ease'
+        transition: 'all 0.3s ease'
         }}>
-        <CardActionArea>
+        <CardActionArea LinkComponent={Link} to={'/projects/test'}>
             <CardMedia
                 component="img"
                 height="200"

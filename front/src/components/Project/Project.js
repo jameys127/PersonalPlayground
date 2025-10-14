@@ -9,8 +9,8 @@ import './Project.css';
 const Projects = () => {
 
   return (
-    <section className='public'>
-        <PublicHeader />
+    // <section className='public'>
+    //     <PublicHeader />
         <div className='project-section'>
             <h1 className='project-intro'>
                 My Projects
@@ -18,8 +18,8 @@ const Projects = () => {
             <h3>From video games to custom compilers!</h3>
             <Cards />
         </div>
-        <PublicFooter />
-    </section>
+    //     <PublicFooter />
+    // </section>
   )
 }
 
