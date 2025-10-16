@@ -25,7 +25,7 @@
 } */
 
 .intro-bar{
-    background: #31113d;
+    background: linear-gradient(90deg, #7821c9, #b444b1);
     transform: skewY(-2deg);
     width: 100%;
     margin-top: 1rem;

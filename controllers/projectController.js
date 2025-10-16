@@ -64,9 +64,22 @@ const updateProject = asyncHandler(async (req, res) => {
     return res.status(200).json({message: `Project ${title} updated successfully`});
 });
 
+const getProjectBySlug = asyncHandler(async (req, res) => {
+    const slug = req.params.slug;
+    if(!slug){
+        return res.status(400).json({message: 'All fields required'});
+    }
+    const projectData = await project.getProjectBySlug(slug);
+    if(projectData.length === 0){
+        return res.status(404).json({message: 'No project found'});
+    }
+    return res.status(200).json(projectData);
+})
+
 module.exports = {
     getAllProjects,
     updateProject,
     deleteProject,
-    createNewProject
+    createNewProject,
+    getProjectBySlug
 }

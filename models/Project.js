@@ -92,6 +92,22 @@ const getProjectByTitleToSlug = async (title) => {
     }
 }
 
+const getProjectBySlug = async (slug) => {
+    const query = `
+        SELECT id FROM projects WHERE slug = $1;
+    `
+    try{
+        const projectId = await pool.query(query, [slug]);
+        if(projectId.rows.length === 0){
+            return [];
+        }
+        const result = await getProject(projectId.rows[0].id);
+        return result;
+    }catch (err){
+        console.log(err);
+    }
+}
+
 const deleteProject = async (id) => {
     const query = `
         DELETE FROM projects WHERE id = $1;
@@ -149,5 +165,6 @@ module.exports = {
     deleteProject,
     updateProject,
     getProject,
-    getProjectByTitleToSlug
+    getProjectByTitleToSlug,
+    getProjectBySlug
 };

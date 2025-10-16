@@ -12,4 +12,7 @@ router.route('/')
     .patch(projectController.updateProject)
     .delete(projectController.deleteProject);
 
+router.route('/:slug')
+    .get(projectController.getProjectBySlug)
+
 module.exports = router;

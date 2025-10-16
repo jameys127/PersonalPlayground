@@ -20,7 +20,7 @@ const CardItem = (prop) => {
         },
         transition: 'all 0.3s ease'
         }}>
-        <CardActionArea LinkComponent={Link} to={'/projects/test'}>
+        <CardActionArea LinkComponent={Link} to={`/projects/${prop.slug}`}>
             <CardMedia
                 component="img"
                 height="200"

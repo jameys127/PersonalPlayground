@@ -2,10 +2,32 @@ import React from 'react'
 import SwiperComponent from '../SwiperComponent';
 import './ProjectPage.css'
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import api from '../../app/api/api';
 
 
 const ProjectPage = () => {
+
+    const {slug} = useParams();
+    const {isPending, error, data} = useQuery({
+        queryKey: [`${slug}`],
+        queryFn: async () => {
+            const res = await api.get(`/projects/${slug}`);
+            return res.data;
+        }
+    });
+
+    if(isPending){
+        return <p>Loading...</p>
+    } 
+    if(error){
+        return <p>Error: {error.message}</p>
+    }
+    if(!data){
+        return null
+    }
+    // console.log('description: ', data[0].description)
     const string = `
 Hello, my name is Jeremiah Sheehy, a software developer from California with a Bachelor degree in Computer Science from California State University, Northridge. I'm currently expanding my portfolio and pursuing a junior programming role, while continually working to grow my technical skills and experience.
 
@@ -17,10 +39,12 @@ All of the code for the projects featured on this website, including the website
   return (
     <div className='project-page-body'>
         <div className='slider-section'>
-            <SwiperComponent />
+            <SwiperComponent
+                imgs={data[0].images}
+            />
         </div>
         <div className='project-header-bar'>
-            <h1 className='project-title'>Asteroids Unity Project</h1>
+            <h1 className='project-title'>{data[0].title}</h1>
             <div className='project-buttons'>
                 <Button
                     href='https://github.com/jameys127'
@@ -41,7 +65,7 @@ All of the code for the projects featured on this website, including the website
             </div>
         </div>
         <div className='project-description'>
-            <pre>{string}</pre>
+            <pre>{data[0].description}</pre>
         </div>
     </div>
   )

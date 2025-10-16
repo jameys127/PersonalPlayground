@@ -20,6 +20,7 @@ function App() {
         <Route path='projects' element={<ProjectLayout />}>
           <Route index element={<Project />} /> 
           <Route path='test' element={<ProjectPage />} />
+          <Route path=':slug' element={<ProjectPage />} />
         </Route>
         <Route path='about' element={<About />} />
 

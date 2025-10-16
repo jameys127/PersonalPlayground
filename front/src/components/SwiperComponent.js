@@ -6,7 +6,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 
-const SwiperComponent = () => {
+const SwiperComponent = (prop) => {
+  console.log('imgs: ', prop.imgs);
   return (
     <div className='slider'>
     <Swiper
@@ -15,12 +16,14 @@ const SwiperComponent = () => {
       pagination={{clickable: true}}
       navigation
       slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
     >
+      {prop.imgs.map((img) => (
+        <SwiperSlide><img src={img} alt='img'/></SwiperSlide>
+      ))}
+      {/* <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide>
       <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide>
       <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide>
-      <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide>
-      <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide>
+      <SwiperSlide><img src='https://placehold.co/600x400' alt='img' /></SwiperSlide> */}
     </Swiper>
     </div>
   )

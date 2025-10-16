@@ -41,6 +41,7 @@ const Cards = () => {
             img={p.images[0]}
             title={p.title}
             description={p.description}
+            slug={p.slug}
             />
         ))}
       </div>
@@ -52,6 +53,7 @@ const Cards = () => {
               img={cardContent.img}
               title={cardContent.title}
               description={cardContent.description}
+              slug='test'
           />
           <CardItem
               img='/image.png'
