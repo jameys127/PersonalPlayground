@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './PublicHeader.css';
 
@@ -8,9 +8,6 @@ const PublicHeader = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  useEffect(() => {
-    
-  })
 
   return (
     <nav className='navbar'>

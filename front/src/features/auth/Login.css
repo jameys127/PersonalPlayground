@@ -89,3 +89,10 @@
     box-shadow: 0 4px 12px rgba(138, 43, 226, 0.5);
 }
 
+.error-message{
+    position: relative;
+    bottom: -15px;
+    color: #ff0000;
+    font-weight: 300;
+}
+

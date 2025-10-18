@@ -1,33 +1,30 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faHouse} from '@fortawesome/free-solid-svg-icons'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import './DashFooter.css'
 
 const DashFooter = () => {
+    const [date, setDate] = useState(new Date());
 
-    const navigate = useNavigate();
-    const {pathname} = useLocation();
+    useEffect(() => {
+        var timer = setInterval(() => setDate(new Date()), 1000);
 
-    const onGoHomeClicked = () => navigate('/dash');
-
-    let goHomeButton = null;
-    if(pathname !== '/dash'){
-        goHomeButton = (
-            <button 
-                className='dash-footer-button icon-button'
-                title='Home'
-                onClick={onGoHomeClicked}
-            >
-                <FontAwesomeIcon icon={faHouse} />
-            </button>
-        )
-    }
+        return function cleanup() {
+            clearInterval(timer);
+        }
+    })
 
     return (
-        <footer className="dash-footer">
-            {goHomeButton}
-            <p>Current User:</p>
-            <p>Status:</p>
-        </footer>
+        <div className='dash-footer-container'>
+            <footer className="dash-footer">
+                <div className='dash-footer-time'>
+                    <p className='title'>Time:</p>
+                    <p className='time'>{date.toLocaleTimeString()}</p>
+                </div>
+                <div className='dash-footer-date'>
+                    <p className='title'>Date:</p>
+                    <p className='date'>{date.toLocaleDateString()}</p>
+                </div>
+            </footer>
+        </div>
     )
 }
 

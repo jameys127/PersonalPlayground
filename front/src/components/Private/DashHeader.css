@@ -1,0 +1,72 @@
+.dash-navbar{
+    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.dash-navbar-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    max-width: 1900px;
+}
+
+.dash-navbar-logo{
+    color: #fff;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.fa-code{
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.dash-nav-menu{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 2px;
+    list-style: none;
+    text-align: center;
+    /* justify-content: center; */
+    margin-right: 20px;
+}
+
+.dash-nav-item{
+    height: 80px;
+}
+
+.dash-nav-links{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    cursor: pointer;
+}
+
+.dash-nav-links:hover{
+    border-bottom: 4px solid #fff;
+    transition: all 0.2 ease-out;
+}
+
+.fa-arrow-right-from-bracket{
+    margin-right: 7px;
+    margin-top: 1px;
+}

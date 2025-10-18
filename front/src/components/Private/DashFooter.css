@@ -1,0 +1,30 @@
+.dash-footer-container{
+    background: linear-gradient(135deg, #1a1a1d, #232526, #414345);
+    color: #fff;
+}
+.dash-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 15vh;
+}
+
+.dash-footer-time{
+}
+
+.dash-footer-date{
+}
+
+.title{
+    text-align: center;
+}
+
+.time{
+
+}
+
+.date{
+
+}
