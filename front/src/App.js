@@ -8,6 +8,8 @@ import Project from './components/Project/Project';
 import About from './components/Public/About/About';
 import ProjectPage from './components/Project/ProjectPage';
 import ProjectLayout from './components/Project/ProjectLayout';
+import DashBody from './components/Private/DashBody';
+import DashEdit from './components/Private/DashEdit';
 
 function App() {
   return (
@@ -29,7 +31,8 @@ function App() {
 
         {/* and then we have the /dash but this has its own index that it defaults to */}
         <Route path='dash' element={<DashLayout />}>
-          <Route index element={<Welcome />} />
+          <Route index element={<DashBody />} />
+          <Route path=':slug' element={<DashEdit />} />
         </Route>
 
       </Route>
