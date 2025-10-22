@@ -16,15 +16,15 @@ const getAllProjects = asyncHandler(async (req, res) => {
 //@route POST /projects
 //@access Private
 const createNewProject = asyncHandler(async (req, res) => {
-    const {title, img, description} = req.body;
-    if(!title || !Array.isArray(img) || img.length === 0 || !description){
+    const {title, github, link, img, description} = req.body;
+    if(!title || !github || !link || !Array.isArray(img) || img.length === 0 || !description){
         return res.status(400).json({message: 'Must have all required fields'})
     }
     const duplicateSlug = await project.getProjectByTitleToSlug(title);
     if(duplicateSlug.length !== 0){
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
-    const newProject = await project.createProject(title, img, description);
+    const newProject = await project.createProject(title, github, link, img, description);
     if(newProject){
         return res.status(201).json({message: `Project ${title} created`});
     }else{
@@ -45,8 +45,8 @@ const deleteProject = asyncHandler(async(req, res) => {
 });
 
 const updateProject = asyncHandler(async (req, res) => {
-    const {id, title, img, description} = req.body;
-    if(!id || !title || !Array.isArray(img) || img.length === 0 || !description){
+    const {id, title, github, link, img, description} = req.body;
+    if(!id || !title || !github || !link || !Array.isArray(img) || img.length === 0 || !description){
         return res.status(400).json({message: 'All fields required'});
     }
     const projectToUpdate = await project.getProject(id);
@@ -57,7 +57,7 @@ const updateProject = asyncHandler(async (req, res) => {
     if(duplicateSlug.length !== 0){
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
-    const updatedProject = await project.updateProject(id, title, img, description);
+    const updatedProject = await project.updateProject(id, title, github, link, img, description);
     if(updatedProject === 0){
         return res.status(400).json({message: 'Error updating project'});
     }

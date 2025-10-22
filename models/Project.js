@@ -9,18 +9,18 @@ const createSlug = (title) => {
         .replace(/^-+|-+$/g, '');
 }
 
-const createProject = async (title, img, description) => {
+const createProject = async (title, github, link, img, description) => {
     const client = await pool.connect();
     try{
         await client.query('BEGIN');
         const slug = createSlug(title);
         const query = `
-            INSERT INTO projects (title, description, slug)
-            VALUES ($1, $2, $3)
+            INSERT INTO projects (title, github, link, description, slug)
+            VALUES ($1, $2, $3, $4, $5)
             RETURNING id;
         `;
         // insert img into seperate table.
-        const values = [title, description, slug]
+        const values = [title, github, link, description, slug]
         const result = await client.query(query, values);
         for(let i = 0; i < img.length; i++){
             const secondQuery = `
@@ -42,13 +42,13 @@ const createProject = async (title, img, description) => {
 
 const getAllProjects = async () => {
     const query = `
-        SELECT p.id, p.title, p.description, p.slug,
+        SELECT p.id, p.title, p.github, p.link, p.description, p.slug,
         COALESCE(
             JSON_AGG(i.img_url) FILTER (WHERE i.img_url IS NOT NULL), '[]'
         ) AS images
         FROM projects p
         LEFT JOIN project_images i ON p.id = i.project_id
-        GROUP BY p.id, p.title, p.description, p.slug
+        GROUP BY p.id, p.title, p.github, p.link, p.description, p.slug
         ORDER BY p.id;
     `;
     try{
@@ -61,14 +61,14 @@ const getAllProjects = async () => {
 
 const getProject = async (id) => {
     const query = `
-        SELECT p.id, p.title, p.description, p.slug,
+        SELECT p.id, p.title, p.github, p.link, p.description, p.slug,
         COALESCE(
             JSON_AGG(i.img_url) FILTER (WHERE i.img_url IS NOT NULL), '[]'
         ) AS images
         FROM projects p
         LEFT JOIN project_images i ON p.id = i.project_id
         WHERE p.id = $1
-        GROUP BY p.id, p.title, p.description, p.slug;
+        GROUP BY p.id, p.title, p.github, p.link, p.description, p.slug;
     `;
     const value = [id];
     try{
@@ -121,7 +121,7 @@ const deleteProject = async (id) => {
     }
 }
 
-const updateProject = async (id, title, img, description) => {
+const updateProject = async (id, title, github, link, img, description) => {
     const client = await pool.connect();
     try{
         await client.query('BEGIN')
@@ -141,10 +141,10 @@ const updateProject = async (id, title, img, description) => {
     
         const slug = createSlug(title);
         const query = `
-            UPDATE projects SET title = $1, description = $2, slug = $3
-            WHERE id = $4;
+            UPDATE projects SET title = $1, github = $2, link = $3 description = $4, slug = $5
+            WHERE id = $6;
         `;
-        const values = [title, description, slug, id];
+        const values = [title, github, link, description, slug, id];
         const result = await client.query(query, values);
         await client.query('COMMIT');
         return result.rowCount;
