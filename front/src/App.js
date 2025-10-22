@@ -32,6 +32,7 @@ function App() {
         {/* and then we have the /dash but this has its own index that it defaults to */}
         <Route path='dash' element={<DashLayout />}>
           <Route index element={<DashBody />} />
+          <Route path='create' element={<DashEdit />} />
           <Route path=':slug' element={<DashEdit />} />
         </Route>
 

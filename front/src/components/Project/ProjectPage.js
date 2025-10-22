@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../app/api/api';
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify'
 
 
 const ProjectPage = () => {
@@ -65,6 +67,11 @@ All of the code for the projects featured on this website, including the website
             </div>
         </div>
         <div className='project-description'>
+            {/* for use when the setup is done (don't forget the imports):
+                <div className='project-description'>
+                    {parse(DOMPurify.sanitize(data[0].description))}
+                </div>
+            */}
             <pre>{data[0].description}</pre>
         </div>
     </div>
