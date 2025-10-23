@@ -49,7 +49,7 @@ All of the code for the projects featured on this website, including the website
             <h1 className='project-title'>{data[0].title}</h1>
             <div className='project-buttons'>
                 <Button
-                    href='https://github.com/jameys127'
+                    href={data[0].github}
                     variant='outlined'
                     color='secondary'
                     size='large'
@@ -57,7 +57,7 @@ All of the code for the projects featured on this website, including the website
                     Github Page
                 </Button>
                 <Button
-                    component={Link}
+                    href={data[0].link}
                     variant='outlined'
                     color='secondary'
                     size='large'

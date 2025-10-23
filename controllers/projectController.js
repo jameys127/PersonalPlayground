@@ -1,5 +1,9 @@
 const project = require('../models/Project');
 const asyncHandler = require('express-async-handler');
+const {PutObjectCommand} = require('@aws-sdk/client-s3');
+const s3 = require('../config/s3');
+
+const BUCKET_NAME = process.env.AWS_S3_BUCKET;
 
 //@desc get all projects
 //@route GET /projects
@@ -16,14 +20,38 @@ const getAllProjects = asyncHandler(async (req, res) => {
 //@route POST /projects
 //@access Private
 const createNewProject = asyncHandler(async (req, res) => {
-    const {title, github, link, img, description} = req.body;
-    if(!title || !github || !link || !Array.isArray(img) || img.length === 0 || !description){
+    const {title, github, link, description} = req.body;
+    const imageFiles = req.files;
+
+    if(!title || !github || !link || !imageFiles || imageFiles.length === 0 || !description){
         return res.status(400).json({message: 'Must have all required fields'})
     }
+
     const duplicateSlug = await project.getProjectByTitleToSlug(title);
     if(duplicateSlug.length !== 0){
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
+
+    //later setup for s3 uploading of the files
+    const img = [];
+    try{
+    for (const file of imageFiles){
+        const key = `projects/${Date.now()}-${file.originalname}`
+        const params = {
+            Bucket: BUCKET_NAME,
+            Key: key,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+        };
+        await s3.send(new PutObjectCommand(params));
+
+        const url = `https://${BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`
+        img.push(url);
+    }
+    }catch (err){
+        return res.status(500).json({message: `Failed to upload to s3: ${err.message}`})
+    }
+
     const newProject = await project.createProject(title, github, link, img, description);
     if(newProject){
         return res.status(201).json({message: `Project ${title} created`});
@@ -37,6 +65,7 @@ const deleteProject = asyncHandler(async(req, res) => {
     if(!id){
         return res.status(400).json({message: 'Project id required'});
     }
+    // delete images in s3
     const deleted = await project.deleteProject(id);
     if(deleted === 0){
         return res.status(400).json({message: 'Project not found'});
@@ -45,8 +74,9 @@ const deleteProject = asyncHandler(async(req, res) => {
 });
 
 const updateProject = asyncHandler(async (req, res) => {
-    const {id, title, github, link, img, description} = req.body;
-    if(!id || !title || !github || !link || !Array.isArray(img) || img.length === 0 || !description){
+    const {id, title, github, link, description} = req.body;
+    const imageFiles = req.files
+    if(!id || !title || !github || !link || !imageFiles || imageFiles.length === 0 || !description){
         return res.status(400).json({message: 'All fields required'});
     }
     const projectToUpdate = await project.getProject(id);
@@ -57,6 +87,10 @@ const updateProject = asyncHandler(async (req, res) => {
     if(duplicateSlug.length !== 0){
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
+
+    //delete and replace the pictures in the s3
+    const img = [];
+
     const updatedProject = await project.updateProject(id, title, github, link, img, description);
     if(updatedProject === 0){
         return res.status(400).json({message: 'Error updating project'});
