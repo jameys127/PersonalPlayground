@@ -101,26 +101,29 @@ const updateProject = asyncHandler(async (req, res) => {
         return res.status(400).json({message: 'Project not found'});
     }
     const duplicateSlug = await project.getProjectByTitleToSlug(title);
-    if(duplicateSlug.length !== 0){
+    if(duplicateSlug.length === 1 && duplicateSlug[0].id !== Number(id)){
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
 
     //delete and replace the pictures in the s3
     const oldImages = projectToUpdate[0].images;
-    const objects = oldImages.map((url) => {
-        const oldKey = url.split('.amazonaws.com/')[1];
-        return {Key: oldKey};
-    });
-    try{
-        await s3.send(
-            new DeleteObjectsCommand({
-                Bucket: BUCKET_NAME,
-                Delete: {Objects: objects}
-            })
-        )
-    }catch(err){
-        console.error(err.message)
-        return res.status(500).json({message: 'Failed to replace images. Please try again'})
+    const s3Deletion = oldImages.every(p => p.startsWith('https'));
+    if(s3Deletion){
+        const objects = oldImages.map((url) => {
+            const oldKey = url.split('.amazonaws.com/')[1];
+            return {Key: oldKey};
+        });
+        try{
+            await s3.send(
+                new DeleteObjectsCommand({
+                    Bucket: BUCKET_NAME,
+                    Delete: {Objects: objects}
+                })
+            )
+        }catch(err){
+            console.error(err.message)
+            return res.status(500).json({message: 'Failed to replace images. Please try again'})
+        }
     }
 
     const img = [];
