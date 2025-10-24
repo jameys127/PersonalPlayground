@@ -26,12 +26,6 @@ const Cards = () => {
     return null;
   }
 
-  const cardContent = {
-    img: '/image.png',
-    title: 'Asteroids',
-    description: 'The retro game Asteriods made in Unity'
-  }
-
   if(pathname === '/projects'){
     return(
       <div className='cards'>
@@ -49,22 +43,15 @@ const Cards = () => {
   }else{
     return (
       <div className='cards'>
+        {data.slice(0, 3).map((p) => (
           <CardItem
-              img={cardContent.img}
-              title={cardContent.title}
-              description={cardContent.description}
-              slug='test'
+            key={p.id}
+            img={p.images[0]}
+            title={p.title}
+            description={p.short}
+            slug={p.slug}
           />
-          <CardItem
-              img='/image.png'
-              title='Asteroids'
-              description='The retro game Asteroids built in Unity'
-          />
-          <CardItem
-              img='/image.png'
-              title='Asteroids'
-              description='The retro game Asteroids built in Unity'
-          />
+        ))}
       </div>
     )
   }

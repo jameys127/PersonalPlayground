@@ -4,10 +4,12 @@ import './PublicBody.css'
 import Cards from './Cards';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import AnimatedRoutes from '../../features/animated/AnimatedRoutes';
 
 const PublicBody = () => {
   return (
     <div className='body-container'>
+      <AnimatedRoutes>
       <PublicIntro />
       <Cards />
       <div className='button-container'>
@@ -21,6 +23,7 @@ const PublicBody = () => {
           See more...
         </Button>
       </div>
+      </AnimatedRoutes>
     </div>
   )
 }

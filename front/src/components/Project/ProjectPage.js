@@ -8,6 +8,7 @@ import api from '../../app/api/api';
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify'
 import CircularProgress from '@mui/material/CircularProgress';
+import AnimatedRoutes from '../../features/animated/AnimatedRoutes';
 
 
 const ProjectPage = () => {
@@ -32,6 +33,7 @@ const ProjectPage = () => {
     }
   return (
     <div className='project-page-body'>
+        <AnimatedRoutes>
         <div className='slider-section'>
             <SwiperComponent
                 imgs={data[0].images}
@@ -60,7 +62,8 @@ const ProjectPage = () => {
         </div>
         <div className='project-description'>
             {parse(DOMPurify.sanitize(data[0].description))}
-        </div> 
+        </div>
+        </AnimatedRoutes>
     </div>
   )
 }

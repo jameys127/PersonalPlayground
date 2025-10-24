@@ -2,12 +2,14 @@ import React from 'react'
 import PublicHeader from '../PublicHeader'
 import PublicFooter from '../PublicFooter'
 import './About.css';
+import AnimatedRoutes from '../../../features/animated/AnimatedRoutes';
 
 const About = () => {
   return (
     <>
         <PublicHeader />
         <div className='about-me-container'>
+            <AnimatedRoutes>
             <div className='about-body'>
                 <h1>About me</h1>
                 <div className='about-me-paragraphs'>
@@ -22,6 +24,7 @@ const About = () => {
                     </p>
                 </div>
             </div>
+            </AnimatedRoutes>
         </div>
         <PublicFooter />
     </>
