@@ -1,3 +1,4 @@
 .dash-card-container{
     background: linear-gradient(to right, #232526, #414345);
+    min-height: 80vh;
 }

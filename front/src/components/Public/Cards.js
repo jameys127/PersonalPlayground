@@ -17,10 +17,10 @@ const Cards = () => {
   });
 
   if(isPending){
-    return <p>Loading...</p>
+    return <p className='loading'>Loading...</p>
   }
   if(error){
-    return <p>Error: {error.message}</p>
+    return <p className='loading'>Error: {error.message}</p>
   } 
   if(!data){
     return null;
@@ -40,7 +40,7 @@ const Cards = () => {
             key={p.id}
             img={p.images[0]}
             title={p.title}
-            description={p.description}
+            description={p.short}
             slug={p.slug}
             />
         ))}

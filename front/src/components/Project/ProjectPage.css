@@ -146,34 +146,36 @@
   background: rgba(255, 255, 255, 0.15) !important;
 }
 
-.project-description{
-    display: flex;
-    align-items: left;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1800px;
-    margin: 3rem;
-}
-
-.project-description::before {
-  content: "";
-  display: block;
-  width: 5px;
-  background: linear-gradient(180deg, #8a2be2, #da70d6);
-  border-radius: 4px;
-  flex-shrink: 0;
-  height: auto;
-  align-self: stretch;
-}
-
-.project-description pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-size: 1.4rem;
-  line-height: 1.8;
-  margin: 0;
+.project-description {
+  width: 90%;
+  max-width: 1800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border-left: 6px solid #8a2be2;
+  font-size: 1.3rem;
   color: #eaeaea;
-  padding: 1.5rem 2rem;
+}
+
+.project-description ul,
+.project-description ol {
+  margin-left: 2.3rem;
+}
+
+.project-description li {
+  margin: 0.4rem 0;
+}
+
+.project-description strong,
+.project-description b {
+  color: #fff;
+}
+
+.project-description em,
+.project-description i {
+  color: #d8a7ff;
 }
 
 @media (max-width: 900px) {

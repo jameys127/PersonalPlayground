@@ -36,14 +36,14 @@ const DashBody = () => {
               key={p.id}
               img={p.images[0]}
               title={p.title}
-              description={p.description}
+              description={p.short}
               slug={p.slug}
               />
           ))}
           <Card
             sx={{
               width: 400,
-              height: 'auto',
+              minHeight: 300,
               backgroundColor: 'rgba(255, 255, 255, 0.03)',
               borderRadius: 3,
               boxShadow: 'none',

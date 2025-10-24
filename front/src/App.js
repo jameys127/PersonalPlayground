@@ -10,8 +10,15 @@ import ProjectPage from './components/Project/ProjectPage';
 import ProjectLayout from './components/Project/ProjectLayout';
 import DashBody from './components/Private/DashBody';
 import DashEdit from './components/Private/DashEdit';
+import { useAuth } from './app/context/AuthContext';
+import { useEffect } from 'react';
+import { attachAuth } from './app/api/api';
 
 function App() {
+  const {auth, setAuth} = useAuth();
+  useEffect(() => {
+    attachAuth(auth.accessToken, setAuth);
+  }, [auth, setAuth]);
   return (
     // These routes are hierarchical in structure
     <Routes>

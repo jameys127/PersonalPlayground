@@ -5,3 +5,13 @@
   font-family: 'Alan Sans', sans-serif;
   
 }
+
+.loading{
+  display: flex;
+  min-height: 80vh;
+  background: linear-gradient(to right, #232526, #414345);
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

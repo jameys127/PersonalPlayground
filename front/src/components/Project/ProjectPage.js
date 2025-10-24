@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import SwiperComponent from '../SwiperComponent';
 import './ProjectPage.css'
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import api from '../../app/api/api';
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify'
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const ProjectPage = () => {
@@ -21,23 +22,14 @@ const ProjectPage = () => {
     });
 
     if(isPending){
-        return <p>Loading...</p>
+        return <div className='loading'><CircularProgress /></div>
     } 
     if(error){
-        return <p>Error: {error.message}</p>
+        return <p className='loading'>Error: {error.response.data.message}</p>
     }
     if(!data){
         return null
     }
-    // console.log('description: ', data[0].description)
-    const string = `
-Hello, my name is Jeremiah Sheehy, a software developer from California with a Bachelor degree in Computer Science from California State University, Northridge. I'm currently expanding my portfolio and pursuing a junior programming role, while continually working to grow my technical skills and experience.
-
-I'm most passionate about backend development, where I get to focus on logic, structure, and database implementation. My current work centers around Node.js, Express, and PostgreSQL, which is what this website was built with, as well as some React.js when a user interface is needed. I also have a strong background in Java and am eager to explore Spring Boot to build on that foundation.
-
-Outside of professional development, I enjoy working on complex, systems-level projects like my custom compiler or my hobby of game development. Gamedev is where I can merge my love of art (even though I'm not that talented) with my love of programming.
-
-All of the code for the projects featured on this website, including the website itself, is available on my GitHub page.`;
   return (
     <div className='project-page-body'>
         <div className='slider-section'>
@@ -67,13 +59,8 @@ All of the code for the projects featured on this website, including the website
             </div>
         </div>
         <div className='project-description'>
-            {/* for use when the setup is done (don't forget the imports):
-                <div className='project-description'>
-                    {parse(DOMPurify.sanitize(data[0].description))}
-                </div>
-            */}
-            <pre>{data[0].description}</pre>
-        </div>
+            {parse(DOMPurify.sanitize(data[0].description))}
+        </div> 
     </div>
   )
 }
