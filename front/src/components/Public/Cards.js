@@ -22,8 +22,8 @@ const Cards = () => {
   if(error){
     return <p className='loading'>Error: {error.message}</p>
   } 
-  if(!data){
-    return null;
+  if(!Array.isArray(data)){
+    return <p className='loading'>No Projects Found</p>;
   }
 
   if(pathname === '/projects'){
