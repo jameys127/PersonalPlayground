@@ -5,9 +5,6 @@ const s3 = require('../config/s3');
 
 const BUCKET_NAME = process.env.AWS_S3_BUCKET;
 
-//@desc get all projects
-//@route GET /projects
-//@access Public
 const getAllProjects = asyncHandler(async (req, res) => {
     const allProjects = await project.getAllProjects();
     if(allProjects.length === 0){
@@ -16,9 +13,6 @@ const getAllProjects = asyncHandler(async (req, res) => {
     return res.status(200).json(allProjects);
 });
 
-//@desc create new project
-//@route POST /projects
-//@access Private
 const createNewProject = asyncHandler(async (req, res) => {
     const {title, github, link, short, description} = req.body;
     const imageFiles = req.files;
@@ -32,7 +26,6 @@ const createNewProject = asyncHandler(async (req, res) => {
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
 
-    //later setup for s3 uploading of the files
     const img = [];
     try{
     for (const file of imageFiles){
@@ -82,7 +75,6 @@ const deleteProject = asyncHandler(async(req, res) => {
         console.error(err.message)
         return res.status(500).json({message: 'Failed to replace images. Please try again'})
     }
-    // delete images in s3
     const deleted = await project.deleteProject(id);
     if(deleted === 0){
         return res.status(400).json({message: 'Project not found'});
@@ -105,7 +97,6 @@ const updateProject = asyncHandler(async (req, res) => {
         return res.status(409).json({message: 'Duplicate title for slug'});
     }
 
-    //delete and replace the pictures in the s3
     const oldImages = projectToUpdate[0].images;
     const s3Deletion = oldImages.every(p => p.startsWith('https'));
     if(s3Deletion){
