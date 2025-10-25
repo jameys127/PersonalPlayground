@@ -12,11 +12,15 @@ const Projects = () => {
   return (
     <div className='project-section'>
       <AnimatedRoutes>
-        <h1 className='project-intro'>
-            My Projects
-        </h1>
-        <h3>From video games to custom compilers!</h3>
-        <Cards />
+        <div className='project-intro-container'>
+          <h1 className='project-intro'>
+              My Projects
+          </h1>
+          <h3>From video games to custom compilers!</h3>
+        </div>
+        <div className='card-grid'>
+          <Cards />
+        </div>
       </AnimatedRoutes>
     </div>
   )

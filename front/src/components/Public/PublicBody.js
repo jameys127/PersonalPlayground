@@ -11,7 +11,9 @@ const PublicBody = () => {
     <div className='body-container'>
       <AnimatedRoutes>
       <PublicIntro />
-      <Cards />
+      <div className='card-grid-section'>
+        <Cards />
+      </div>
       <div className='button-container'>
         <Button 
           component={Link} 

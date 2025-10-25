@@ -4,10 +4,10 @@
 
 .about-body{
     min-height: 80vh;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     color: #fff;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 1400px;
+    margin: 0 auto; 
     line-height: 1.8;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .about-me-paragraphs{
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 400;
     background: rgba(255, 255, 255, 0.03);
     padding: 2rem;
