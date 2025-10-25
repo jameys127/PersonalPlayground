@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import SwiperComponent from '../SwiperComponent';
 import './ProjectPage.css'
 import Button from '@mui/material/Button';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../app/api/api';
 import parse from 'html-react-parser';

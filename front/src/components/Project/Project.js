@@ -1,8 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
-import axios from 'axios';
-import PublicHeader from '../Public/PublicHeader';
-import PublicFooter from '../Public/PublicFooter';
 import Cards from '../Public/Cards';
 import './Project.css';
 import AnimatedRoutes from '../../features/animated/AnimatedRoutes';
